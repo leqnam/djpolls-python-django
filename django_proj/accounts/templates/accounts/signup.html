@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  
+    <div class="row justify-content-center">
+      <div class="col-6">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Sign up - Using Django built-in UserCreationForm!</h3>
+            <form method="post" novalidate>
+              {% csrf_token %}
+              {% include 'accounts/inc/signup-form.html' %}
+              {% comment %} {{ form.as_p }} {% endcomment %}
+              <button type="submit" class="btn btn-primary">Create an account</button>
+            </form>
+          
+          </div>
+          <div class="card-footer text-muted text-center">
+            <a href="{% url 'djpolls:home' %}">Home</a> |
+            <a href="{% url 'accounts:login' %}">Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

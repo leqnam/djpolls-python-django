@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>{{ question.question }}</h1>
+
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+    <form action="{% url 'djpolls_app_name:vote' question.id %}" method="post">
+        {% csrf_token %}
+        {% for choice in question.answer_set.all %}
+            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+        {% endfor %}
+        <input type="submit" value="Submit" class="btn btn-primary">
+    </form>
+
+    <a href="{% url 'djpolls_app_name:home' %}"><- Back</a>
+
+{% endblock %}
