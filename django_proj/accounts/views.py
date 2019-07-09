@@ -46,5 +46,5 @@ class UserUpdateView(UpdateView):
     template_name = 'accounts/update.html'
     success_url = reverse_lazy('accounts:update')
 
-    def get_object(self, request):
+    def get_object(self):
         return self.request.user
