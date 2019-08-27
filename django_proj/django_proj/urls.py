@@ -23,16 +23,21 @@ from accounts.apps import AccountsConfig
 from django.conf.urls import url
 from django.contrib import admin # authentication system
 from django.contrib.auth import views as auth_views # authentication system
+from djpolls import views
+from rest_framework import routers
 
 djpolls_app_name = DjpollsConfig.name # follow here: https://stackoverflow.com/a/56054638/5027340
 account_app_name = AccountsConfig.name
+
+router = routers.DefaultRouter()
+router.register(r'question', views.QuestionViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(djpolls_app_name, include('djpolls.urls', namespace='djpolls_app_name')),
     path(account_app_name, include('accounts.urls', namespace='account_app_name')),
-    
-    
+    # path('api/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api/', include(router.urls)),
     path('', include('djpolls.urls')),
     # or
     # path('', views.home),

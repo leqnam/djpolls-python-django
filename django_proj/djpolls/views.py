@@ -7,6 +7,8 @@ from django.urls import reverse
 from django.template import loader
 from .models import Question, Answer
 from django.utils.translation import ugettext
+from .serializers import QuestionSerializer
+from rest_framework import viewsets
 
 # def home(request):
 #     latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -58,3 +60,10 @@ def vote(request, question_id):
 def results(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     return render(request, 'djpolls/result.html', {'question': question})
+
+class QuestionViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Question.objects.all().order_by('-pub_date')
+    serializer_class = QuestionSerializer

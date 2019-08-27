@@ -1,4 +1,4 @@
-#!D:\namle\python-django\djpolls-python-django\env\scripts\python.exe
+#!d:\namle\python-django\djpolls-python-django\env\scripts\python.exe
 from django.core import management
 
 if __name__ == "__main__":

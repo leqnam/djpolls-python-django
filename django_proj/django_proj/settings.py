@@ -25,7 +25,7 @@ SECRET_KEY = '_7rx5=7=zf4_ph$mr2)vivik&mi)@q2&hty*7wu10*&a#^fm2s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.24', 'localhost']
 
 
 # Application definition
@@ -41,7 +41,13 @@ INSTALLED_APPS = [
   #  'djpolls' # Registering the app 'djpolls',
     'djpolls.apps.DjpollsConfig',
     'accounts',
+    'rest_framework'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
